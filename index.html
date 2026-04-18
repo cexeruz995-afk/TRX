@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TRX – The official gateway to the TRON ecosystem. Claim your TRX rewards, connect your wallet and join millions of users worldwide.">
+<meta name="keywords" content="TRX, TRON, TRX claim, TRX airdrop, TRX wallet, TRX staking, TRON network, TRX rewards, TRX connect, TRX crypto">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="TRX – Official TRON Gateway">
+<meta property="og:description" content="Connect your wallet and claim your TRX rewards on the TRON network.">
+<meta property="og:type" content="website">
+<title>TRX – Official TRON Gateway | Claim & Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23e53935'/%3E%3Cstop offset='100%25' stop-color='%23ff6f00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='%230a0a0f'/%3E%3Cpolygon points='32,10 54,44 10,44' fill='none' stroke='url(%23g)' stroke-width='2.5'/%3E%3Cpolygon points='32,18 46,40 18,40' fill='url(%23g)' opacity='0.15'/%3E%3Cline x1='32' y1='10' x2='32' y2='44' stroke='url(%23g)' stroke-width='1.5' opacity='0.6'/%3E%3Cline x1='10' y1='44' x2='54' y2='44' stroke='url(%23g)' stroke-width='1.5' opacity='0.6'/%3E%3C/svg%3E">
+<style>
+:root {
+  --red: #e53935;
+  --red-bright: #ff1744;
+  --orange: #ff6f00;
+  --gold: #ffd600;
+  --bg: #050508;
+  --bg2: #0a0a10;
+  --bg3: #0f0f18;
+  --surface: #12121e;
+  --surface2: #1a1a2e;
+  --border: rgba(229,57,53,0.18);
+  --border2: rgba(255,111,0,0.12);
+  --text: #f0eee8;
+  --text-dim: #8a8898;
+  --text-muted: #3a3a50;
+  --glow-red: 0 0 40px rgba(229,57,53,0.4);
+  --glow-orange: 0 0 40px rgba(255,111,0,0.3);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+::selection { background: rgba(229,57,53,0.35); color: #fff; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+.noise {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+.grid-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(229,57,53,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(229,57,53,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+.orb {
+  position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+  filter: blur(80px);
+  animation: orbFloat 8s ease-in-out infinite;
+}
+.orb-1 { width: 600px; height: 600px; top: -200px; left: -200px; background: radial-gradient(circle, rgba(229,57,53,0.12) 0%, transparent 70%); }
+.orb-2 { width: 500px; height: 500px; bottom: -100px; right: -100px; background: radial-gradient(circle, rgba(255,111,0,0.1) 0%, transparent 70%); animation-delay: -4s; }
+.orb-3 { width: 300px; height: 300px; top: 40%; left: 60%; background: radial-gradient(circle, rgba(229,57,53,0.07) 0%, transparent 70%); animation-delay: -2s; }
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 5%;
+  height: 70px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(5,5,8,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem; font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.nav-logo svg { width: 36px; height: 36px; }
+
+.nav-logo span { color: var(--text); }
+.nav-logo span em { font-style: normal; color: var(--red); }
+
+.nav-links {
+  display: flex; align-items: center; gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-dim); text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: var(--red);
+  transform: scaleX(0); transition: transform 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.btn-connect-nav {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+  cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: color 0.3s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+.btn-connect-nav::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--red);
+  transform: translateX(-105%); transition: transform 0.3s ease;
+}
+
+.btn-connect-nav:hover { color: #fff; }
+.btn-connect-nav:hover::before { transform: translateX(0); }
+.btn-connect-nav span { position: relative; z-index: 1; }
+
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 100px 5% 60px;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--red);
+  border: 1px solid rgba(229,57,53,0.3);
+  padding: 7px 18px;
+  margin-bottom: 36px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red);
+  animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.hero-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+
+.hero-title .line1 { display: block; color: var(--text); }
+.hero-title .line2 {
+  display: block;
+  background: linear-gradient(90deg, var(--red), var(--orange), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(229,57,53,0.5));
+}
+
+.hero-sub {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 400; letter-spacing: 0.05em;
+  color: var(--text-dim);
+  max-width: 540px; margin: 0 auto 52px;
+  line-height: 1.6;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero-cta {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.btn-primary {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 18px 44px;
+  background: linear-gradient(135deg, var(--red), var(--orange));
+  color: #fff; border: none; cursor: pointer;
+  position: relative; overflow: hidden;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  transition: transform 0.2s, filter 0.2s;
+  box-shadow: 0 0 40px rgba(229,57,53,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  transform: translateY(-100%); transition: transform 0.3s;
+}
+
+.btn-primary:hover { transform: translateY(-2px); filter: brightness(1.15); }
+.btn-primary:hover::before { transform: translateY(0); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary span { position: relative; z-index: 1; }
+
+.btn-secondary {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 17px 36px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(240,238,232,0.2);
+  cursor: pointer;
+  position: relative; overflow: hidden;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.btn-secondary:hover { border-color: var(--red); color: var(--red); }
+.btn-secondary span { position: relative; z-index: 1; }
+
+.hero-stats {
+  display: flex; align-items: center; justify-content: center;
+  gap: 60px; margin-top: 80px;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text), var(--red));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.2em;
+  color: var(--text-muted); text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.stat-divider {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, transparent, var(--border), transparent);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ticker {
+  position: relative; z-index: 1;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden; padding: 14px 0;
+}
+
+.ticker-inner {
+  display: flex; gap: 80px;
+  animation: ticker 30s linear infinite;
+  width: max-content;
+}
+
+.ticker-item {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem; white-space: nowrap; color: var(--text-dim);
+}
+
+.ticker-item strong { color: var(--text); }
+.ticker-item .up { color: #00e676; }
+.ticker-item .down { color: var(--red); }
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+section { position: relative; z-index: 1; }
+
+.claim-section {
+  padding: 120px 5%;
+  display: flex; flex-direction: column; align-items: center;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--red);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 800;
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.section-desc {
+  font-size: 1.05rem; font-weight: 400; letter-spacing: 0.03em;
+  color: var(--text-dim); text-align: center;
+  max-width: 560px; line-height: 1.65;
+  margin-bottom: 64px;
+}
+
+.claim-card {
+  width: 100%; max-width: 560px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 48px;
+  position: relative;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(229,57,53,0.1);
+}
+
+.claim-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), var(--orange), transparent);
+}
+
+.claim-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.claim-card-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text);
+}
+
+.badge-live {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.15em;
+  color: #00e676;
+  background: rgba(0,230,118,0.08);
+  border: 1px solid rgba(0,230,118,0.2);
+  padding: 4px 12px;
+}
+
+.badge-live-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #00e676; animation: pulse 1.5s ease infinite;
+}
+
+.claim-amount-display {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 24px;
+  margin-bottom: 24px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+
+.claim-amount-display::before {
+  content: 'AVAILABLE REWARDS';
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-muted);
+}
+
+.claim-amount {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.8rem; font-weight: 900;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 16px;
+}
+
+.claim-amount-usd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem; color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.claim-input-group { margin-bottom: 20px; }
+.claim-input-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.15em;
+  color: var(--text-muted); text-transform: uppercase;
+  display: block; margin-bottom: 8px;
+}
+
+.claim-input {
+  width: 100%; padding: 14px 18px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem; letter-spacing: 0.05em;
+  outline: none; transition: border-color 0.2s;
+}
+
+.claim-input::placeholder { color: var(--text-muted); }
+.claim-input:focus { border-color: var(--red); box-shadow: 0 0 0 2px rgba(229,57,53,0.1); }
+
+.btn-claim {
+  width: 100%;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem; font-weight: 800;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--red), var(--orange));
+  color: #fff; border: none; cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: transform 0.2s, filter 0.2s;
+  box-shadow: 0 0 50px rgba(229,57,53,0.35);
+  margin-bottom: 16px;
+}
+
+.btn-claim::after {
+  content: ''; position: absolute;
+  top: 50%; left: 50%;
+  width: 0; height: 0;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  transition: width 0.4s, height 0.4s, opacity 0.4s;
+  opacity: 0;
+}
+
+.btn-claim:hover { transform: translateY(-2px); filter: brightness(1.1); }
+.btn-claim:active::after { width: 300px; height: 300px; opacity: 0; }
+.btn-claim span { position: relative; z-index: 1; }
+
+.claim-secure {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.12em; color: var(--text-muted);
+}
+
+.claim-secure svg { color: var(--red); }
+
+.features-section { padding: 80px 5% 120px; }
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  max-width: 1200px; margin: 0 auto;
+}
+
+.feature-card {
+  background: var(--bg2);
+  padding: 44px 36px;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+
+.feature-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 0; height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--orange));
+  transition: width 0.4s ease;
+}
+
+.feature-card:hover { background: var(--surface); }
+.feature-card:hover::before { width: 100%; }
+
+.feature-icon {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(229,57,53,0.08);
+  border: 1px solid rgba(229,57,53,0.2);
+  margin-bottom: 24px;
+  font-size: 1.5rem;
+}
+
+.feature-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text); margin-bottom: 12px;
+}
+
+.feature-desc {
+  font-size: 0.95rem; font-weight: 400;
+  color: var(--text-dim); line-height: 1.65;
+  letter-spacing: 0.02em;
+}
+
+.wallets-section { padding: 80px 5% 120px; }
+
+.wallets-title-wrap { text-align: center; margin-bottom: 64px; }
+
+.wallets-grid {
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 16px;
+  max-width: 900px; margin: 0 auto 52px;
+}
+
+.wallet-item {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 16px 24px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  position: relative; overflow: hidden;
+}
+
+.wallet-item::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(229,57,53,0.06), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+
+.wallet-item:hover {
+  border-color: rgba(229,57,53,0.4);
+  box-shadow: 0 0 20px rgba(229,57,53,0.12);
+  transform: translateY(-2px);
+}
+
+.wallet-item:hover::before { opacity: 1; }
+
+.wallet-logo {
+  width: 32px; height: 32px; font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.wallet-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text);
+  position: relative; z-index: 1;
+}
+
+.staking-section {
+  padding: 80px 5% 120px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.staking-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center;
+}
+
+.staking-text { }
+.staking-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--orange);
+  margin-bottom: 16px; display: block;
+}
+
+.staking-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-weight: 800; line-height: 1.1;
+  color: var(--text); margin-bottom: 20px;
+}
+
+.staking-desc {
+  font-size: 1rem; font-weight: 400;
+  color: var(--text-dim); line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.staking-features { list-style: none; }
+.staking-features li {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.95rem; font-weight: 500;
+  color: var(--text-dim); padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.staking-features li::before {
+  content: ''; flex-shrink: 0;
+  width: 6px; height: 6px;
+  background: var(--red);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.staking-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 40px;
+  position: relative;
+}
+
+.staking-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
+}
+
+.staking-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.staking-row:last-child { border-bottom: none; }
+
+.staking-row-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem; letter-spacing: 0.12em;
+  color: var(--text-muted); text-transform: uppercase;
+}
+
+.staking-row-value {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--text);
+}
+
+.staking-row-value.highlight {
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.staking-input-row {
+  display: flex; gap: 12px; margin-top: 28px;
+}
+
+.staking-input {
+  flex: 1; padding: 13px 16px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  outline: none; transition: border-color 0.2s;
+}
+
+.staking-input:focus { border-color: var(--orange); }
+
+.btn-stake {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 13px 24px;
+  background: linear-gradient(135deg, var(--orange), var(--gold));
+  color: #000; border: none; cursor: pointer;
+  transition: filter 0.2s, transform 0.2s;
+}
+
+.btn-stake:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+.roadmap-section { padding: 80px 5% 120px; }
+
+.roadmap-items {
+  max-width: 800px; margin: 0 auto;
+  position: relative;
+}
+
+.roadmap-line {
+  position: absolute; left: 19px; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, var(--red), transparent);
+}
+
+.roadmap-item {
+  display: flex; gap: 36px; margin-bottom: 48px;
+  position: relative;
+}
+
+.roadmap-dot {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+}
+
+.roadmap-dot.active {
+  border-color: var(--red);
+  background: rgba(229,57,53,0.1);
+  box-shadow: 0 0 20px rgba(229,57,53,0.3);
+}
+
+.roadmap-dot.active::after {
+  content: ''; position: absolute;
+  width: 10px; height: 10px;
+  background: var(--red);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.roadmap-dot .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; color: var(--text-muted);
+}
+
+.roadmap-content { padding-top: 8px; }
+
+.roadmap-phase {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.2em;
+  color: var(--red); text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.roadmap-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--text); margin-bottom: 8px;
+}
+
+.roadmap-desc {
+  font-size: 0.95rem; color: var(--text-dim); line-height: 1.6;
+}
+
+.cta-section {
+  padding: 100px 5%;
+  text-align: center;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+
+.cta-section::before {
+  content: 'TRX'; position: absolute;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 25vw; font-weight: 900;
+  color: rgba(229,57,53,0.03);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap; pointer-events: none;
+  letter-spacing: -0.05em;
+}
+
+.cta-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900; line-height: 1.1;
+  color: var(--text); margin-bottom: 20px;
+  position: relative;
+}
+
+.cta-desc {
+  font-size: 1.05rem; color: var(--text-dim);
+  max-width: 480px; margin: 0 auto 48px;
+  line-height: 1.65;
+  position: relative;
+}
+
+.cta-buttons {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; flex-wrap: wrap;
+  position: relative;
+}
+
+footer {
+  position: relative; z-index: 1;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 60px 5% 36px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px; margin-bottom: 52px;
+}
+
+.footer-brand p {
+  font-size: 0.9rem; color: var(--text-dim);
+  line-height: 1.7; margin-top: 16px; max-width: 280px;
+}
+
+.footer-col-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text); margin-bottom: 20px;
+}
+
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links a {
+  font-size: 0.9rem; color: var(--text-dim);
+  text-decoration: none; letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--red); }
+
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 32px; border-top: 1px solid var(--border);
+  flex-wrap: wrap; gap: 16px;
+}
+
+.footer-copy {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.footer-socials { display: flex; gap: 16px; }
+.social-btn {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  text-decoration: none; font-size: 0.9rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.social-btn:hover { border-color: var(--red); color: var(--red); }
+
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(5,5,8,0.92);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 48px;
+  width: 100%; max-width: 480px;
+  position: relative;
+  box-shadow: 0 60px 120px rgba(0,0,0,0.7), var(--glow-red);
+  transform: scale(0.95); transition: transform 0.3s;
+}
+
+.modal-overlay.open .modal { transform: scale(1); }
+
+.modal::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), var(--orange), transparent);
+}
+
+.modal-close {
+  position: absolute; top: 20px; right: 20px;
+  width: 32px; height: 32px;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-dim); cursor: pointer; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.modal-close:hover { border-color: var(--red); color: var(--red); }
+
+.modal-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem; font-weight: 800;
+  letter-spacing: 0.06em; color: var(--text);
+  margin-bottom: 8px;
+}
+
+.modal-desc {
+  font-size: 0.9rem; color: var(--text-dim);
+  margin-bottom: 36px; line-height: 1.6;
+}
+
+.wallets-list { display: flex; flex-direction: column; gap: 10px; }
+
+.wallet-option {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+
+.wallet-option:hover { border-color: rgba(229,57,53,0.4); background: var(--bg3); }
+
+.wallet-option-left {
+  display: flex; align-items: center; gap: 14px;
+}
+
+.wallet-option-icon { font-size: 1.6rem; }
+
+.wallet-option-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.06em; color: var(--text);
+}
+
+.wallet-option-type {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.12em;
+  color: var(--text-muted); text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.wallet-option-arrow {
+  font-size: 1rem; color: var(--text-muted);
+  transition: transform 0.2s, color 0.2s;
+}
+
+.wallet-option:hover .wallet-option-arrow { transform: translateX(4px); color: var(--red); }
+
+@media (max-width: 900px) {
+  .staking-inner { grid-template-columns: 1fr; gap: 48px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .hero-stats { gap: 32px; }
+  nav { padding: 0 4%; }
+  .nav-links { display: none; }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 100px 4% 60px; }
+  .claim-card { padding: 32px 24px; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .hero-stats { flex-direction: column; gap: 24px; }
+  .stat-divider { display: none; }
+  .staking-input-row { flex-direction: column; }
+  .modal { padding: 36px 24px; }
+}
+
+.scroll-reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+
+.count-up { display: inline-block; }
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<nav>
+  <div class="nav-logo">
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="17" stroke="rgba(229,57,53,0.3)" stroke-width="1"/>
+      <polygon points="18,6 30,26 6,26" fill="none" stroke="url(#ng)" stroke-width="1.5"/>
+      <polygon points="18,12 25,24 11,24" fill="url(#ng)" opacity="0.2"/>
+      <line x1="18" y1="6" x2="18" y2="26" stroke="url(#ng)" stroke-width="1" opacity="0.5"/>
+      <defs>
+        <linearGradient id="ng" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#e53935"/>
+          <stop offset="1" stop-color="#ff6f00"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <span><em>TRX</em> NETWORK</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#claim">Claim</a></li>
+    <li><a href="#staking">Staking</a></li>
+    <li><a href="#wallets">Wallets</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#ecosystem">Ecosystem</a></li>
+  </ul>
+  <button class="btn-connect-nav" onclick="openModal()"><span>⬡ Connect Wallet</span></button>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    TRON Network — Official TRX Portal
+  </div>
+  <h1 class="hero-title">
+    <span class="line1">THE FUTURE</span>
+    <span class="line2">IS TRX</span>
+  </h1>
+  <p class="hero-sub">The most advanced gateway to the TRON blockchain. Connect, stake, and claim your TRX rewards in real time.</p>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="openModal()"><span>⬡ Connect Wallet</span></button>
+    <button class="btn-secondary" onclick="document.getElementById('claim').scrollIntoView({behavior:'smooth'})"><span>↓ Claim TRX</span></button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-value"><span class="count-up" data-target="94000000000">0</span></div>
+      <div class="stat-label">TRX Circulating</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-value"><span class="count-up" data-target="2000000000">0</span></div>
+      <div class="stat-label">Total Accounts</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-value"><span class="count-up" data-target="7000">0</span></div>
+      <div class="stat-label">TPS Throughput</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-value"><span class="count-up" data-target="6">0</span>%+ APY</div>
+      <div class="stat-label">Staking Yield</div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-inner" id="tickerInner"></div>
+</div>
+
+<section class="claim-section" id="claim">
+  <div class="section-label scroll-reveal">// REWARDS PORTAL</div>
+  <h2 class="section-title scroll-reveal">Claim Your TRX Rewards</h2>
+  <p class="section-desc scroll-reveal">Connect your wallet to instantly view and claim your accumulated TRX staking rewards, airdrops and governance incentives.</p>
+
+  <div class="claim-card scroll-reveal">
+    <div class="claim-card-header">
+      <div class="claim-card-title">Reward Dashboard</div>
+      <div class="badge-live"><span class="badge-live-dot"></span>LIVE</div>
+    </div>
+    <div class="claim-amount-display">
+      <div class="claim-amount">— TRX</div>
+      <div class="claim-amount-usd">Connect wallet to view your rewards</div>
+    </div>
+    <div class="claim-input-group">
+      <label class="claim-input-label" for="walletAddr">Wallet Address</label>
+      <input class="claim-input" id="walletAddr" type="text" placeholder="T1e8...or connect wallet above" autocomplete="off">
+    </div>
+    <button class="btn-claim" onclick="openModal()"><span>◈ CLAIM REWARDS</span></button>
+    <div class="claim-secure">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg>
+      Secured by TRON Smart Contract · No custody
+    </div>
+  </div>
+</section>
+
+<section class="features-section" id="ecosystem">
+  <div style="text-align:center;margin-bottom:64px;">
+    <div class="section-label scroll-reveal">// CORE FEATURES</div>
+    <h2 class="section-title scroll-reveal">Built for the TRON Ecosystem</h2>
+    <p class="section-desc scroll-reveal" style="margin:0 auto;">Everything you need to participate in the world's largest decentralized ecosystem.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card scroll-reveal">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">Instant Transactions</div>
+      <p class="feature-desc">TRON processes over 7,000 transactions per second with near-zero fees, making TRX the most efficient blockchain for real-world use.</p>
+    </div>
+    <div class="feature-card scroll-reveal">
+      <div class="feature-icon">🔐</div>
+      <div class="feature-title">Non-Custodial Security</div>
+      <p class="feature-desc">Your private keys, your assets. We never hold your TRX. All interactions are direct smart contract calls with full on-chain transparency.</p>
+    </div>
+    <div class="feature-card scroll-reveal">
+      <div class="feature-icon">◈</div>
+      <div class="feature-title">TRX Staking v2</div>
+      <p class="feature-desc">Stake TRX to earn Bandwidth and Energy resources, participate in governance votes, and unlock premium network benefits.</p>
+    </div>
+    <div class="feature-card scroll-reveal">
+      <div class="feature-icon">🌐</div>
+      <div class="feature-title">DeFi Integration</div>
+      <p class="feature-desc">Access JustSwap, JustLend, SunSwap and hundreds of dApps directly from this portal. TRX is the key to the entire ecosystem.</p>
+    </div>
+    <div class="feature-card scroll-reveal">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Real-Time Analytics</div>
+      <p class="feature-desc">Live portfolio tracking, reward projections, network statistics and TRX price data aggregated from top exchanges worldwide.</p>
+    </div>
+    <div class="feature-card scroll-reveal">
+      <div class="feature-icon">🏆</div>
+      <div class="feature-title">Governance Rewards</div>
+      <p class="feature-desc">Vote for Super Representatives with your staked TRX and earn additional TRX voting rewards distributed every 6 hours.</p>
+    </div>
+  </div>
+</section>
+
+<section class="staking-section" id="staking">
+  <div class="staking-inner">
+    <div class="staking-text scroll-reveal">
+      <span class="staking-label">// TRX STAKING 3.0</span>
+      <h2 class="staking-title">Stake TRX.<br>Earn More TRX.</h2>
+      <p class="staking-desc">TRON's Stake 2.0 mechanism gives you full control — stake flexibly, unlock instantly, and compound your rewards automatically.</p>
+      <ul class="staking-features">
+        <li>Flexible staking — unstake any time</li>
+        <li>Up to 6%+ APY on staked TRX balance</li>
+        <li>Earn Bandwidth & Energy for free transactions</li>
+        <li>Compound rewards with one click</li>
+        <li>Participate in governance and earn extra TRX</li>
+      </ul>
+    </div>
+    <div class="staking-card scroll-reveal">
+      <div class="staking-row">
+        <span class="staking-row-label">Current APY</span>
+        <span class="staking-row-value highlight">6.2%</span>
+      </div>
+      <div class="staking-row">
+        <span class="staking-row-label">Total Staked</span>
+        <span class="staking-row-value">41.2B TRX</span>
+      </div>
+      <div class="staking-row">
+        <span class="staking-row-label">Unlock Period</span>
+        <span class="staking-row-value">14 Days</span>
+      </div>
+      <div class="staking-row">
+        <span class="staking-row-label">Min. Stake</span>
+        <span class="staking-row-value">1 TRX</span>
+      </div>
+      <div class="staking-row">
+        <span class="staking-row-label">Rewards Cycle</span>
+        <span class="staking-row-value">Every 6h</span>
+      </div>
+      <div class="staking-input-row">
+        <input class="staking-input" type="number" placeholder="Amount TRX">
+        <button class="btn-stake" onclick="openModal()">STAKE NOW</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wallets-section" id="wallets">
+  <div class="wallets-title-wrap">
+    <div class="section-label scroll-reveal">// SUPPORTED WALLETS</div>
+    <h2 class="section-title scroll-reveal">Connect Any Wallet</h2>
+    <p class="section-desc scroll-reveal" style="margin:0 auto;">TRX Network is compatible with all major TRON and multichain wallets.</p>
+  </div>
+  <div class="wallets-grid scroll-reveal">
+    <div class="wallet-item" onclick="openModal()">
+      <div class="wallet-logo">🦊</div>
+      <div class="wallet-name">TronLink</div>
+    </div>
+    <div class="wallet-item" onclick="openModal()">
+      <div class="wallet-logo">💎</div>
+      <div class="wallet-name">TokenPocket</div>
+    </div>
+    <div class="wallet-item" onclick="openModal()">
+      <div class="wallet-logo">🌀</div>
+      <div class="wallet-name">WalletConnect</div>
+    </div>
+    <div class="wallet-item" onclick="openModal()">
+      <div class="wallet-logo">🔵</div>
+      <div class="wallet-name">Trust Wallet</div>
+    </div>
+    <div class="wallet-item" onclick="openModal()">
+      <div class="wallet-logo">⬡</div>
+      <div class="wallet-name">Ledger</div>
+    </div>
+    <div class="wallet-item" onclick="openModal()">
+      <div class="wallet-logo">🟠</div>
+      <div class="wallet-name">imToken</div>
+    </div>
+    <div class="wallet-item" onclick="openModal()">
+      <div class="wallet-logo">🔷</div>
+      <div class="wallet-name">Bitkeep</div>
+    </div>
+    <div class="wallet-item" onclick="openModal()">
+      <div class="wallet-logo">🌟</div>
+      <div class="wallet-name">Math Wallet</div>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap-section" id="roadmap">
+  <div style="text-align:center;margin-bottom:64px;">
+    <div class="section-label scroll-reveal">// ROADMAP 2025–2026</div>
+    <h2 class="section-title scroll-reveal">The Path Forward</h2>
+    <p class="section-desc scroll-reveal" style="margin:0 auto;">TRON's strategic vision for TRX ecosystem expansion and technological advancement.</p>
+  </div>
+  <div class="roadmap-items scroll-reveal">
+    <div class="roadmap-line"></div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot active"><div></div></div>
+      <div class="roadmap-content">
+        <div class="roadmap-phase">Q1–Q2 2025 · COMPLETE</div>
+        <div class="roadmap-title">Stake 2.0 Launch & TRX Burn Mechanism</div>
+        <p class="roadmap-desc">Full deployment of Stake 2.0 protocol with flexible unstaking. Launch of TRX deflationary burn mechanism with 10M+ TRX burned weekly.</p>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot active"><div></div></div>
+      <div class="roadmap-content">
+        <div class="roadmap-phase">Q3–Q4 2025 · IN PROGRESS</div>
+        <div class="roadmap-title">TRX Cross-Chain Bridge & AI Ecosystem</div>
+        <p class="roadmap-desc">Native cross-chain bridge for TRX to Ethereum, BSC and Solana. Partnership with AI-driven DeFi protocols leveraging TRON's low-cost infrastructure.</p>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot"><span class="num">3</span></div>
+      <div class="roadmap-content">
+        <div class="roadmap-phase">Q1 2026 · UPCOMING</div>
+        <div class="roadmap-title">TRON EVM Compatibility Layer</div>
+        <p class="roadmap-desc">Full Ethereum Virtual Machine equivalence allowing Ethereum dApps to deploy natively on TRON with 100x lower transaction costs.</p>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot"><span class="num">4</span></div>
+      <div class="roadmap-content">
+        <div class="roadmap-phase">Q2–Q4 2026 · PLANNED</div>
+        <div class="roadmap-title">TRX RWA Integration & Institutional Suite</div>
+        <p class="roadmap-desc">Real World Asset tokenization on TRON, institutional-grade TRX custody solutions, and enhanced governance with on-chain proposals for all TRX holders.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2 class="cta-title scroll-reveal">Ready to Join<br>the TRON Network?</h2>
+  <p class="cta-desc scroll-reveal">Connect your wallet in seconds and start earning TRX rewards today. No registration. No KYC. Fully decentralized.</p>
+  <div class="cta-buttons scroll-reveal">
+    <button class="btn-primary" onclick="openModal()"><span>⬡ Connect & Start Earning</span></button>
+    <button class="btn-secondary" onclick="document.getElementById('claim').scrollIntoView({behavior:'smooth'})"><span>↓ Check My Rewards</span></button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo" style="font-size:1.1rem;">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;">
+          <polygon points="18,6 30,26 6,26" fill="none" stroke="url(#nf)" stroke-width="1.5"/>
+          <line x1="18" y1="6" x2="18" y2="26" stroke="url(#nf)" stroke-width="1" opacity="0.5"/>
+          <defs>
+            <linearGradient id="nf" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#e53935"/><stop offset="1" stop-color="#ff6f00"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span><em>TRX</em> NETWORK</span>
+      </div>
+      <p>The official gateway to the TRON ecosystem. Stake, claim, and participate in the future of decentralized finance with TRX.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Protocol</div>
+      <ul class="footer-links">
+        <li><a href="#claim">Claim Rewards</a></li>
+        <li><a href="#staking">TRX Staking</a></li>
+        <li><a href="#ecosystem">Ecosystem</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-links">
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Whitepaper</a></li>
+        <li><a href="#">Smart Contracts</a></li>
+        <li><a href="#">Audit Reports</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Community</div>
+      <ul class="footer-links">
+        <li><a href="#">Twitter / X</a></li>
+        <li><a href="#">Telegram</a></li>
+        <li><a href="#">Discord</a></li>
+        <li><a href="#">Medium</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 TRX Network · Built on TRON Blockchain · All rights reserved</div>
+    <div class="footer-socials">
+      <a class="social-btn" href="#" title="Twitter">𝕏</a>
+      <a class="social-btn" href="#" title="Telegram">✈</a>
+      <a class="social-btn" href="#" title="Discord">⚙</a>
+      <a class="social-btn" href="#" title="GitHub">◈</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">Connect Wallet</div>
+    <p class="modal-desc">Select your wallet to connect to TRX Network. Your private keys remain fully in your control.</p>
+    <div class="wallets-list">
+      <div class="wallet-option" onclick="connectWallet('TronLink')">
+        <div class="wallet-option-left">
+          <div class="wallet-option-icon">🦊</div>
+          <div>
+            <div class="wallet-option-name">TronLink</div>
+            <div class="wallet-option-type">Official TRON Wallet</div>
+          </div>
+        </div>
+        <div class="wallet-option-arrow">→</div>
+      </div>
+      <div class="wallet-option" onclick="connectWallet('TokenPocket')">
+        <div class="wallet-option-left">
+          <div class="wallet-option-icon">💎</div>
+          <div>
+            <div class="wallet-option-name">TokenPocket</div>
+            <div class="wallet-option-type">Multi-chain Wallet</div>
+          </div>
+        </div>
+        <div class="wallet-option-arrow">→</div>
+      </div>
+      <div class="wallet-option" onclick="connectWallet('WalletConnect')">
+        <div class="wallet-option-left">
+          <div class="wallet-option-icon">🌀</div>
+          <div>
+            <div class="wallet-option-name">WalletConnect</div>
+            <div class="wallet-option-type">Connect via QR Code</div>
+          </div>
+        </div>
+        <div class="wallet-option-arrow">→</div>
+      </div>
+      <div class="wallet-option" onclick="connectWallet('Trust Wallet')">
+        <div class="wallet-option-left">
+          <div class="wallet-option-icon">🔵</div>
+          <div>
+            <div class="wallet-option-name">Trust Wallet</div>
+            <div class="wallet-option-type">Mobile & Browser Extension</div>
+          </div>
+        </div>
+        <div class="wallet-option-arrow">→</div>
+      </div>
+      <div class="wallet-option" onclick="connectWallet('Ledger')">
+        <div class="wallet-option-left">
+          <div class="wallet-option-icon">⬡</div>
+          <div>
+            <div class="wallet-option-name">Ledger</div>
+            <div class="wallet-option-type">Hardware Wallet</div>
+          </div>
+        </div>
+        <div class="wallet-option-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function connectWallet(name) {
+  closeModal();
+  const btn = document.querySelector('.btn-connect-nav span');
+  btn.textContent = '✓ ' + name.slice(0,8) + '...';
+  const claimAmt = document.querySelector('.claim-amount');
+  const claimUsd = document.querySelector('.claim-amount-usd');
+  const rand = (Math.random() * 2400 + 120).toFixed(2);
+  claimAmt.textContent = rand + ' TRX';
+  claimUsd.textContent = '≈ $' + (rand * 0.1135).toFixed(2) + ' USD · Ready to claim';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+const tickerData = [
+  { pair: 'TRX/USDT', price: '0.1135', change: '+3.2%', dir: 'up' },
+  { pair: 'TRX/BTC', price: '0.0000014', change: '+1.8%', dir: 'up' },
+  { pair: 'TRX/ETH', price: '0.0000421', change: '-0.4%', dir: 'down' },
+  { pair: 'TRON TVL', price: '$8.2B', change: '+5.1%', dir: 'up' },
+  { pair: 'TRX Staked', price: '41.2B', change: '+0.8%', dir: 'up' },
+  { pair: 'Daily TXs', price: '7.4M', change: '+12%', dir: 'up' },
+  { pair: 'USDT (TRC20)', price: '$61.2B', change: '+2.3%', dir: 'up' },
+  { pair: 'TRX Burned', price: '382M', change: 'All-time', dir: 'up' },
+];
+
+const ticker = document.getElementById('tickerInner');
+const items = [...tickerData, ...tickerData].map(d =>
+  `<div class="ticker-item"><strong>${d.pair}</strong> ${d.price} <span class="${d.dir}">${d.change}</span></div>`
+).join('');
+ticker.innerHTML = items + items;
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+function formatBig(n) {
+  if (n >= 1e9) return (n/1e9).toFixed(1) + 'B';
+  if (n >= 1e6) return (n/1e6).toFixed(0) + 'M';
+  if (n >= 1e3) return (n/1e3).toFixed(0) + 'K';
+  return n.toString();
+}
+
+function animateCount(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 2000;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = formatBig(Math.floor(ease * target));
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = formatBig(target);
+  }
+  requestAnimationFrame(step);
+}
+
+const countObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCount(e.target);
+      countObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.count-up').forEach(el => countObs.observe(el));
+</script>
+</body>
+</html>
